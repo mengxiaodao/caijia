@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>caijia</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+    <!-- 供jersey Webservice 使用  start -->
+<!--     <context-param>   -->
+<!-- 		<param-name>contextConfigLocation</param-name>   -->
+<!-- 		<param-value> -->
+<!-- 					classpath:/config/spring/application-context.xml, -->
+<!-- 					classpath:/config/spring/common-util.xml, -->
+<!-- 					classpath:/config/spring/env/*.xml, -->
+<!-- 					classpath:/config/spring/persistence/*.xml, -->
+<!-- 					classpath:/config/spring/transaction/*.xml,					 -->
+<!-- 					classpath:/config/spring/app/rm-service.xml,	 -->
+<!-- 					classpath:/config/spring/app/rm-beans.xml, -->
+<!-- 					classpath:/config/spring/app/eservice-service.xml, -->
+<!-- 					classpath:/config/spring/app/scheduler-bean.xml, -->
+<!-- 					classpath:/config/spring/app/cert-quartz-service.xml, -->
+<!-- 					classpath:/config/spring/quartz-cluster-beans.xml, -->
+<!-- 					classpath:/config/spring/app/sp-pub-beans.xml					 -->
+<!-- 		</param-value>   -->
+<!-- 	</context-param>  -->
+	<!--Configure Spring Request Context Listener for Spring to use request scope for Spring beans -->
+<!-- 	<listener> -->
+<!--         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class> -->
+<!-- 	</listener>  -->
+	
+	<!-- Declare Jersey Spring Servlet: -->
+<!-- 	<servlet> -->
+<!--         <servlet-name>jerseyspring</servlet-name> -->
+<!--         <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>         -->
+<!--         <load-on-startup>1</load-on-startup> -->
+<!--         <init-param> -->
+<!--         	<param-name>com.sun.jersey.config.property.packages</param-name>   -->
+<!--         	  <param-value>com.caijia.rest</param-value>   -->
+<!--         </init-param> -->
+<!--     </servlet> -->
+<servlet>
+  <servlet-name>Jersey REST Service</servlet-name>
+<servlet-class>
+  com.sun.jersey.spi.container.servlet.ServletContainer
+</servlet-class>
+  <init-param>
+    <param-name>com.sun.jersey.config.property.packages</param-name>
+    <param-value>com.caijia.rest</param-value>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>Jersey REST Service</servlet-name>
+  <url-pattern>/*</url-pattern>
+</servlet-mapping>
+<!--     <servlet-mapping> -->
+<!--         <servlet-name>jerseyspring</servlet-name> -->
+<!--         <url-pattern>/rest/*</url-pattern> -->
+<!--     </servlet-mapping> -->
+    
+	<!-- 供jersey Webservice 使用  end --> 
+	
+<!-- 	<listener> -->
+<!-- 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
+<!-- 	</listener> -->
+<!-- 	<context-param> -->
+<!-- 		<param-name>contextConfigLocation</param-name> -->
+ 		<!-- <param-value>/WEB-INF/applicationContext-*.xml,classpath*:applicationContext-*.xml</param-value> --> 
+<!-- 		<param-value>classpath:ApplicationContext.xml</param-value> -->
+<!-- 	</context-param> -->
+
+</web-app>

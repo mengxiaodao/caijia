@@ -1,0 +1,95 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               5.5.25 - MySQL Community Server (GPL)
+-- Server OS:                    Win64
+-- HeidiSQL Version:             8.3.0.4752
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Dumping database structure for caijia
+CREATE DATABASE IF NOT EXISTS `caijia` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `caijia`;
+
+
+-- Dumping structure for table caijia.cai
+CREATE TABLE IF NOT EXISTS `cai` (
+  `caiUuid` varchar(36) NOT NULL,
+  `caiName` varchar(20) DEFAULT NULL,
+  `price` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`caiUuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table caijia.cai: ~3 rows (approximately)
+/*!40000 ALTER TABLE `cai` DISABLE KEYS */;
+INSERT INTO `cai` (`caiUuid`, `caiName`, `price`) VALUES
+	('1', '苹果', '1.5'),
+	('2', '香蕉', '2.5'),
+	('3', '芒果', '3.5');
+/*!40000 ALTER TABLE `cai` ENABLE KEYS */;
+
+
+-- Dumping structure for table caijia.orderdetail
+CREATE TABLE IF NOT EXISTS `orderdetail` (
+  `orderDatailUuid` varchar(36) NOT NULL,
+  `orderUuid` varchar(36) DEFAULT NULL,
+  `caiUuid` varchar(36) DEFAULT NULL,
+  `amount` varchar(100) DEFAULT NULL,
+  `price` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`orderDatailUuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table caijia.orderdetail: ~6 rows (approximately)
+/*!40000 ALTER TABLE `orderdetail` DISABLE KEYS */;
+INSERT INTO `orderdetail` (`orderDatailUuid`, `orderUuid`, `caiUuid`, `amount`, `price`) VALUES
+	('1', '1', '1', '15', '10'),
+	('14da952c-25ff-4c70-8ba3-ea6b62ca1e8c', 'f1b66af0-7d95-4b1f-9e1a-7864209eafa9', '2', '1000', '30'),
+	('2', '1', '2', '15', '10'),
+	('3', '2', '2', '20', '25'),
+	('4', '2', '3', '20', '10'),
+	('8a66bbe2-2c19-4133-932c-ba2df89252c3', 'f1b66af0-7d95-4b1f-9e1a-7864209eafa9', '1', '500', '20');
+/*!40000 ALTER TABLE `orderdetail` ENABLE KEYS */;
+
+
+-- Dumping structure for table caijia.orders
+CREATE TABLE IF NOT EXISTS `orders` (
+  `orderUuid` varchar(36) NOT NULL,
+  `orderTotal` varchar(20) DEFAULT NULL,
+  `address` varchar(1000) DEFAULT NULL,
+  `owner` varchar(20) DEFAULT NULL,
+  `phone` varchar(64) DEFAULT NULL,
+  `createTime` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`orderUuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table caijia.orders: ~3 rows (approximately)
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` (`orderUuid`, `orderTotal`, `address`, `owner`, `phone`, `createTime`) VALUES
+	('1', '200', '大连站', 'aaa', '134444', '2014-01-01 11:11:11'),
+	('2', '300', '庄河', NULL, NULL, '2014-01-01 11:11:22'),
+	('f1b66af0-7d95-4b1f-9e1a-7864209eafa9', '2000', '北京', 'jack', '13456789', '2014-09-26 09:36:09');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+
+
+-- Dumping structure for table caijia.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `userUuid` varchar(36) NOT NULL,
+  `userName` varchar(20) DEFAULT NULL,
+  `passWord` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`userUuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table caijia.user: ~2 rows (approximately)
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`userUuid`, `userName`, `passWord`, `email`, `phone`) VALUES
+	('1', 'a', 'a', 'a', '13488888888'),
+	('fb91cf5c-d541-4f43-ba35-683535bf16b5', 'cccccc', '1234', 'XXX@XX.com', '13466665547');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
